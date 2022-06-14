@@ -22,8 +22,6 @@ services:
       - django-nginx
     volumes:
       - django-static:/app/static
-    ports:
-      - 8000:80
     depends_on:
       - django
   postgres:
