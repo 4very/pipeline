@@ -8,5 +8,7 @@
 .DS_Store
 /pipeline-env/
 **/__pycache__/**
-
+.devcontainer
 *.backup
+.env
+/dev/**
