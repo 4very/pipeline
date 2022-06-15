@@ -11,7 +11,7 @@ django-webpack-loader = "*"
 "beautifulsoup4" = "==4.6.0"
 django-prometheus = "*"
 gunicorn = "*"
-"psycopg2-binary" = "*"
+psycopg2 = "2.8.6"
 requests = "*"
 opencv-python = "*"
 wagtail-autocomplete = "*"
@@ -27,6 +27,3 @@ black = "==19.3b0"
 nplusone = "*"
 pylint = "*"
 pylint-django = "*"
-
-[pipenv]
-allow_prereleases = true

@@ -13,3 +13,4 @@
 .env
 /dev/**
 /dev-docker/db/*
+/dev-docker/db
