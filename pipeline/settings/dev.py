@@ -1,4 +1,5 @@
 import logging
+import os
 
 from .base import *
 
@@ -33,12 +34,18 @@ LOGGING = {
     },
 }
 
-
-DATABASES = {
-    "default": dj_database_url.config(
-        default="postgresql://postgres:postgres@127.0.0.1:5432/postgres"
-    )
-}
+if os.environ.get("DOCKER_CONTAINER", False):
+    DATABASES = {
+        "default": dj_database_url.config(
+            default="postgresql://postgres:postgres@postgres:5432/pipeline"
+        )
+    }
+else:
+    DATABASES = {
+        "default": dj_database_url.config(
+            default="postgresql://postgres:postgres@127.0.0.1:5432/postgres"
+        )
+    }
 
 
 NPLUSONE_LOGGER = logging.getLogger("nplusone")

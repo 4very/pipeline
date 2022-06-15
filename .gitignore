@@ -12,3 +12,4 @@
 *.backup
 .env
 /dev/**
+/dev-docker/db/*
