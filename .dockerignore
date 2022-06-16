@@ -16,3 +16,4 @@
 !webpack.config.js
 !webpack.development.config.js
 !webpack.production.config.js
+!yarn.lock

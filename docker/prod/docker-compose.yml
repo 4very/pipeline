@@ -2,7 +2,8 @@ version: '2'
 services:
   django:
     build:
-      context: .
+      context: ../..
+      dockerfile: ./docker/prod/Dockerfile
     networks:
       - django-nginx
     volumes:
@@ -15,7 +16,7 @@ services:
       - postgres
   nginx:
     build:
-      context: ./nginx
+      context: ../../nginx
     ports:
       - "8001:8000"
     networks:

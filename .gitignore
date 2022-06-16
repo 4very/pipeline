@@ -10,7 +10,5 @@
 **/__pycache__/**
 .devcontainer
 *.backup
-.env
 /dev/**
-/dev-docker/db/*
-/dev-docker/db
+**/db/**
