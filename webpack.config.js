@@ -50,8 +50,14 @@ module.exports = {
           {
             loader: 'postcss-loader',
             options: {
-              config: {
-                path: path.resolve('./postcss.config.js')
+              postcssOptions: {
+                plugins: [
+                  //'postcss-import', {},
+                  //'precss', {},
+                  //'autoprefixer', {},
+                  //'postcss-preset-env', {},
+                  //'cssnano', {}
+                ]
               }
             }
           },
