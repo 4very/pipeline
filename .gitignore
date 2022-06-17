@@ -12,3 +12,4 @@
 *.backup
 /dev/**
 **/db/**
+.env
