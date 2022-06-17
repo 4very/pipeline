@@ -42,7 +42,17 @@ services:
       - pipeline-network
     volumes:
       - "${HOST_PROJECT_PATH:-../..}:/app"
-  
+
+
+  adminer:
+    image: adminer
+    container_name: pipeline-dev-adminer
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - pipeline-network
+
 networks:
   pipeline-network:
     external: true
