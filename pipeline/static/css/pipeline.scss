@@ -2,6 +2,9 @@
 
 
 $primary: #DA1E05;
+$theme-colors: (
+  primary: $primary
+);
 
 $off-white: #fefefe;
 
@@ -51,6 +54,7 @@ $font-family-base: 'Lora', serif;
 // @import "bootstrap/scss/print";
 
 @import "./elections.scss";
+
 
 @each $breakpoint in map-keys($grid-breakpoints) {
   @include media-breakpoint-up($breakpoint) {
@@ -116,7 +120,7 @@ hr {
   color: $gray-900;
 }
 
-a.text-dark {
+a {
   text-decoration: none;
   &:hover {
     text-decoration: underline;
