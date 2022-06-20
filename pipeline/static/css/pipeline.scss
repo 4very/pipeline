@@ -90,6 +90,15 @@ header a.search {
   text-decoration: none;
 }
 
+hr {
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	border: 0;
+	border-top: 1px solid rgba(0,0,0,.1);
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0) !important;
+}
+
 .header-logo img {
   height: 35px;
 }
