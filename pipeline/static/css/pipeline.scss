@@ -1,8 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i|Playfair+Display:400,400i,700,700i,900,900i|Raleway:500,500i,600,600i,700,700i');
 
-$theme-colors: (
-  "primary": #DA1E05,
-);
+
+$primary: #DA1E05;
 
 $off-white: #fefefe;
 
@@ -24,7 +23,7 @@ $font-family-base: 'Lora', serif;
 // @import "bootstrap/scss/code";
 @import "bootstrap/scss/grid";
 // @import "bootstrap/scss/tables";
-@import "bootstrap/scss/forms";
+// @import "bootstrap/scss/forms";
 @import "bootstrap/scss/buttons";
 // @import "bootstrap/scss/transitions";
 // @import "bootstrap/scss/dropdown";
@@ -48,6 +47,7 @@ $font-family-base: 'Lora', serif;
 // @import "bootstrap/scss/popover";
 // @import "bootstrap/scss/carousel";
 @import "bootstrap/scss/utilities";
+@import "bootstrap/scss/helpers/colored-links";
 // @import "bootstrap/scss/print";
 
 @import "./elections.scss";
@@ -105,6 +105,13 @@ header a.search {
 
 .text-dark {
   color: $gray-900;
+}
+
+a.text-dark {
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 .nav-scroller {
