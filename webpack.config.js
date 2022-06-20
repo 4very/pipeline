@@ -52,11 +52,11 @@ module.exports = {
             options: {
               postcssOptions: {
                 plugins: [
-                  //'postcss-import', {},
-                  //'precss', {},
-                  //'autoprefixer', {},
-                  //'postcss-preset-env', {},
-                  //'cssnano', {}
+                  'postcss-import',
+                  'precss',
+                  'autoprefixer',
+                  'postcss-preset-env',
+                  'cssnano'
                 ]
               }
             }
