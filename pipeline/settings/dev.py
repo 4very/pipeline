@@ -17,9 +17,11 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 MIDDLEWARE = [
     "debug_toolbar.middleware.DebugToolbarMiddleware",
     "nplusone.ext.django.NPlusOneMiddleware",
-] + MIDDLEWARE
+] + MIDDLEWARE + [
+    'livereload.middleware.LiveReloadScript'
+]
 
-INSTALLED_APPS = INSTALLED_APPS + ["debug_toolbar", "nplusone.ext.django"]
+INSTALLED_APPS = ['livereload'] + INSTALLED_APPS + ["debug_toolbar", "nplusone.ext.django"]
 
 LOGGING = {
     "version": 1,

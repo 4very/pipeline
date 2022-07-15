@@ -22,5 +22,6 @@ COPY . /app/
 # COPY --from=node /app/pipeline/static/webpack_bundles/ /app/pipeline/static/webpack_bundles/
 # COPY --from=node /app/webpack-stats.json /app/
 
+
 EXPOSE 8000
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD /app/docker/dev/start.sh
