@@ -23,7 +23,7 @@ RUN pipenv install --system --deploy
 COPY . /app/
 COPY --from=node /app/pipeline/static/webpack_bundles/ /app/pipeline/static/webpack_bundles/
 COPY --from=node /app/webpack-stats.json /app/
-COPY ./start.sh start.sh
+COPY ./docker/prod/start.sh start.sh
 
 EXPOSE 8000
 CMD ["./start.sh"]

@@ -29,7 +29,6 @@ INSTALLED_APPS = [
     "home",
     "search",
     "newsletter",
-    "lights",
     "wagtailautocomplete",
     "wagtail.contrib.forms",
     "wagtail.contrib.modeladmin",
