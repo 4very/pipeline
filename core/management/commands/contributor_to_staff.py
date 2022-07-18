@@ -6,7 +6,7 @@ from django.core.management.base import BaseCommand
 from django.core.files.images import ImageFile
 from django.db import transaction
 from django.utils.text import slugify
-from wagtail.core.rich_text import RichText
+from wagtail.rich_text import RichText
 import requests
 from requests.exceptions import RequestException
 

@@ -2,8 +2,8 @@
 
 from django.db import migrations, models
 import django.db.models.deletion
-import wagtail.core.blocks
-import wagtail.core.fields
+import wagtail.blocks
+import wagtail.fields
 
 
 class Migration(migrations.Migration):
@@ -31,19 +31,19 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "featured_articles",
-                    wagtail.core.fields.StreamField(
+                    wagtail.fields.StreamField(
                         [
                             (
                                 "one_column",
-                                wagtail.core.blocks.StructBlock(
+                                wagtail.blocks.StructBlock(
                                     [
                                         (
                                             "column",
-                                            wagtail.core.blocks.StructBlock(
+                                            wagtail.blocks.StructBlock(
                                                 [
                                                     (
                                                         "article",
-                                                        wagtail.core.blocks.PageChooserBlock(
+                                                        wagtail.blocks.PageChooserBlock(
                                                             target_model=[
                                                                 "core.ArticlePage"
                                                             ]
@@ -51,7 +51,7 @@ class Migration(migrations.Migration):
                                                     ),
                                                     (
                                                         "headline",
-                                                        wagtail.core.blocks.RichTextBlock(
+                                                        wagtail.blocks.RichTextBlock(
                                                             help_text="Optional. Will override the article's headline.",
                                                             required=False,
                                                         ),
@@ -64,15 +64,15 @@ class Migration(migrations.Migration):
                             ),
                             (
                                 "two_columns",
-                                wagtail.core.blocks.StructBlock(
+                                wagtail.blocks.StructBlock(
                                     [
                                         (
                                             "left_column",
-                                            wagtail.core.blocks.StructBlock(
+                                            wagtail.blocks.StructBlock(
                                                 [
                                                     (
                                                         "article",
-                                                        wagtail.core.blocks.PageChooserBlock(
+                                                        wagtail.blocks.PageChooserBlock(
                                                             target_model=[
                                                                 "core.ArticlePage"
                                                             ]
@@ -80,7 +80,7 @@ class Migration(migrations.Migration):
                                                     ),
                                                     (
                                                         "headline",
-                                                        wagtail.core.blocks.RichTextBlock(
+                                                        wagtail.blocks.RichTextBlock(
                                                             help_text="Optional. Will override the article's headline.",
                                                             required=False,
                                                         ),
@@ -90,11 +90,11 @@ class Migration(migrations.Migration):
                                         ),
                                         (
                                             "right_column",
-                                            wagtail.core.blocks.StructBlock(
+                                            wagtail.blocks.StructBlock(
                                                 [
                                                     (
                                                         "article",
-                                                        wagtail.core.blocks.PageChooserBlock(
+                                                        wagtail.blocks.PageChooserBlock(
                                                             target_model=[
                                                                 "core.ArticlePage"
                                                             ]
@@ -102,7 +102,7 @@ class Migration(migrations.Migration):
                                                     ),
                                                     (
                                                         "headline",
-                                                        wagtail.core.blocks.RichTextBlock(
+                                                        wagtail.blocks.RichTextBlock(
                                                             help_text="Optional. Will override the article's headline.",
                                                             required=False,
                                                         ),
@@ -112,7 +112,7 @@ class Migration(migrations.Migration):
                                         ),
                                         (
                                             "emphasize_column",
-                                            wagtail.core.blocks.ChoiceBlock(
+                                            wagtail.blocks.ChoiceBlock(
                                                 choices=[
                                                     ("left", "Left"),
                                                     ("right", "Right"),
@@ -126,15 +126,15 @@ class Migration(migrations.Migration):
                             ),
                             (
                                 "three_columns",
-                                wagtail.core.blocks.StructBlock(
+                                wagtail.blocks.StructBlock(
                                     [
                                         (
                                             "left_column",
-                                            wagtail.core.blocks.StructBlock(
+                                            wagtail.blocks.StructBlock(
                                                 [
                                                     (
                                                         "article",
-                                                        wagtail.core.blocks.PageChooserBlock(
+                                                        wagtail.blocks.PageChooserBlock(
                                                             target_model=[
                                                                 "core.ArticlePage"
                                                             ]
@@ -142,7 +142,7 @@ class Migration(migrations.Migration):
                                                     ),
                                                     (
                                                         "headline",
-                                                        wagtail.core.blocks.RichTextBlock(
+                                                        wagtail.blocks.RichTextBlock(
                                                             help_text="Optional. Will override the article's headline.",
                                                             required=False,
                                                         ),
@@ -152,11 +152,11 @@ class Migration(migrations.Migration):
                                         ),
                                         (
                                             "middle_column",
-                                            wagtail.core.blocks.StructBlock(
+                                            wagtail.blocks.StructBlock(
                                                 [
                                                     (
                                                         "article",
-                                                        wagtail.core.blocks.PageChooserBlock(
+                                                        wagtail.blocks.PageChooserBlock(
                                                             target_model=[
                                                                 "core.ArticlePage"
                                                             ]
@@ -164,7 +164,7 @@ class Migration(migrations.Migration):
                                                     ),
                                                     (
                                                         "headline",
-                                                        wagtail.core.blocks.RichTextBlock(
+                                                        wagtail.blocks.RichTextBlock(
                                                             help_text="Optional. Will override the article's headline.",
                                                             required=False,
                                                         ),
@@ -174,11 +174,11 @@ class Migration(migrations.Migration):
                                         ),
                                         (
                                             "right_column",
-                                            wagtail.core.blocks.StructBlock(
+                                            wagtail.blocks.StructBlock(
                                                 [
                                                     (
                                                         "article",
-                                                        wagtail.core.blocks.PageChooserBlock(
+                                                        wagtail.blocks.PageChooserBlock(
                                                             target_model=[
                                                                 "core.ArticlePage"
                                                             ]
@@ -186,7 +186,7 @@ class Migration(migrations.Migration):
                                                     ),
                                                     (
                                                         "headline",
-                                                        wagtail.core.blocks.RichTextBlock(
+                                                        wagtail.blocks.RichTextBlock(
                                                             help_text="Optional. Will override the article's headline.",
                                                             required=False,
                                                         ),
@@ -199,11 +199,11 @@ class Migration(migrations.Migration):
                             ),
                             (
                                 "recent_articles",
-                                wagtail.core.blocks.StructBlock(
+                                wagtail.blocks.StructBlock(
                                     [
                                         (
                                             "num_articles",
-                                            wagtail.core.blocks.IntegerBlock(
+                                            wagtail.blocks.IntegerBlock(
                                                 help_text="Number of recent articles to display.",
                                                 label="Number of articles",
                                             ),

@@ -2,8 +2,8 @@
 
 import core.models
 from django.db import migrations
-import wagtail.core.blocks
-import wagtail.core.fields
+import wagtail.blocks
+import wagtail.fields
 import wagtail.snippets.blocks
 
 
@@ -15,15 +15,15 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name="electionindexpage",
             name="panels",
-            field=wagtail.core.fields.StreamField(
+            field=wagtail.fields.StreamField(
                 [
                     (
                         "three_cards",
-                        wagtail.core.blocks.StructBlock(
+                        wagtail.blocks.StructBlock(
                             [
                                 (
                                     "cards",
-                                    wagtail.core.blocks.StructBlock(
+                                    wagtail.blocks.StructBlock(
                                         [
                                             (
                                                 "office",

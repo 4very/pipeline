@@ -1,9 +1,9 @@
 from django.db import models
 
-from wagtail.admin.edit_handlers import StreamFieldPanel, FieldPanel
+from wagtail.admin.panels import StreamFieldPanel, FieldPanel
 from wagtail.contrib.settings.models import BaseSetting, register_setting
-from wagtail.core import blocks
-from wagtail.core.fields import StreamField
+from wagtail import blocks
+from wagtail.fields import StreamField
 
 from core.models import ArticlePage
 

@@ -2,8 +2,8 @@
 
 from django.db import migrations, models
 import django.db.models.deletion
-import wagtail.core.blocks
-import wagtail.core.fields
+import wagtail.blocks
+import wagtail.fields
 
 
 class Migration(migrations.Migration):
@@ -30,28 +30,28 @@ class Migration(migrations.Migration):
                 ("subject", models.CharField(max_length=255)),
                 (
                     "body",
-                    wagtail.core.fields.StreamField(
+                    wagtail.fields.StreamField(
                         [
                             (
                                 "article",
-                                wagtail.core.blocks.StructBlock(
+                                wagtail.blocks.StructBlock(
                                     [
                                         (
                                             "article",
-                                            wagtail.core.blocks.PageChooserBlock(
+                                            wagtail.blocks.PageChooserBlock(
                                                 target_model=["core.ArticlePage"]
                                             ),
                                         ),
                                         (
                                             "headline",
-                                            wagtail.core.blocks.RichTextBlock(
+                                            wagtail.blocks.RichTextBlock(
                                                 help_text="Optional. Will override the article's headline.",
                                                 required=False,
                                             ),
                                         ),
                                         (
                                             "summary",
-                                            wagtail.core.blocks.RichTextBlock(
+                                            wagtail.blocks.RichTextBlock(
                                                 help_text="Optional. Will override the article's summary.",
                                                 required=False,
                                             ),
@@ -59,7 +59,7 @@ class Migration(migrations.Migration):
                                     ]
                                 ),
                             ),
-                            ("text", wagtail.core.blocks.RichTextBlock()),
+                            ("text", wagtail.blocks.RichTextBlock()),
                         ]
                     ),
                 ),

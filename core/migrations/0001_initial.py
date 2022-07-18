@@ -5,9 +5,9 @@ from django.db import migrations, models
 import django.db.models.deletion
 import modelcluster.fields
 import taggit.managers
-import wagtail.core.blocks
-import wagtail.core.fields
-import wagtail.core.models
+import wagtail.blocks
+import wagtail.fields
+import wagtail.models
 import wagtail.images.blocks
 import wagtail.images.models
 import wagtail.search.index
@@ -67,17 +67,17 @@ class Migration(migrations.Migration):
                         to="wagtailcore.Page",
                     ),
                 ),
-                ("headline", wagtail.core.fields.RichTextField()),
-                ("subdeck", wagtail.core.fields.RichTextField(blank=True, null=True)),
+                ("headline", wagtail.fields.RichTextField()),
+                ("subdeck", wagtail.fields.RichTextField(blank=True, null=True)),
                 (
                     "body",
-                    wagtail.core.fields.StreamField(
+                    wagtail.fields.StreamField(
                         [
-                            ("paragraph", wagtail.core.blocks.RichTextBlock()),
+                            ("paragraph", wagtail.blocks.RichTextBlock()),
                             ("image", wagtail.images.blocks.ImageChooserBlock()),
                             (
                                 "photo_gallery",
-                                wagtail.core.blocks.ListBlock(
+                                wagtail.blocks.ListBlock(
                                     wagtail.snippets.blocks.SnippetChooserBlock(
                                         "core.Photo"
                                     )
@@ -88,7 +88,7 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "summary",
-                    wagtail.core.fields.RichTextField(
+                    wagtail.fields.RichTextField(
                         blank=True,
                         help_text="Displayed on the home page or other places to provide a taste of what the article is about.",
                         null=True,
@@ -186,7 +186,7 @@ class Migration(migrations.Migration):
                 (
                     "collection",
                     models.ForeignKey(
-                        default=wagtail.core.models.get_root_collection_id,
+                        default=wagtail.models.get_root_collection_id,
                         on_delete=django.db.models.deletion.CASCADE,
                         related_name="+",
                         to="wagtailcore.Collection",
@@ -280,7 +280,7 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("caption", wagtail.core.fields.RichTextField(blank=True, null=True)),
+                ("caption", wagtail.fields.RichTextField(blank=True, null=True)),
                 (
                     "image",
                     models.ForeignKey(
@@ -341,7 +341,7 @@ class Migration(migrations.Migration):
                 ),
                 ("first_name", models.CharField(max_length=100)),
                 ("last_name", models.CharField(max_length=100)),
-                ("biography", wagtail.core.fields.RichTextField(blank=True, null=True)),
+                ("biography", wagtail.fields.RichTextField(blank=True, null=True)),
                 (
                     "email_address",
                     models.EmailField(blank=True, max_length=254, null=True),
@@ -380,7 +380,7 @@ class Migration(migrations.Migration):
                         to="wagtailcore.Page",
                     ),
                 ),
-                ("body", wagtail.core.fields.RichTextField()),
+                ("body", wagtail.fields.RichTextField()),
             ],
             options={"abstract": False},
             bases=("wagtailcore.page",),

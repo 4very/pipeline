@@ -5,9 +5,9 @@ from django.db import migrations, models
 import django.db.models.deletion
 import modelcluster.fields
 import taggit.managers
-import wagtail.core.blocks
-import wagtail.core.fields
-import wagtail.core.models
+import wagtail.blocks
+import wagtail.fields
+import wagtail.models
 import wagtail.embeds.blocks
 import wagtail.images.blocks
 import wagtail.images.models
@@ -77,17 +77,17 @@ class Migration(migrations.Migration):
                         to="wagtailcore.Page",
                     ),
                 ),
-                ("headline", wagtail.core.fields.RichTextField()),
-                ("subdeck", wagtail.core.fields.RichTextField(blank=True, null=True)),
+                ("headline", wagtail.fields.RichTextField()),
+                ("subdeck", wagtail.fields.RichTextField(blank=True, null=True)),
                 (
                     "body",
-                    wagtail.core.fields.StreamField(
+                    wagtail.fields.StreamField(
                         [
-                            ("paragraph", wagtail.core.blocks.RichTextBlock()),
+                            ("paragraph", wagtail.blocks.RichTextBlock()),
                             ("image", wagtail.images.blocks.ImageChooserBlock()),
                             (
                                 "photo_gallery",
-                                wagtail.core.blocks.ListBlock(
+                                wagtail.blocks.ListBlock(
                                     wagtail.snippets.blocks.SnippetChooserBlock(
                                         "core.Photo"
                                     )
@@ -98,7 +98,7 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "summary",
-                    wagtail.core.fields.RichTextField(
+                    wagtail.fields.RichTextField(
                         blank=True,
                         help_text="Displayed on the home page or other places to provide a taste of what the article is about.",
                         null=True,
@@ -174,7 +174,7 @@ class Migration(migrations.Migration):
                 (
                     "collection",
                     models.ForeignKey(
-                        default=wagtail.core.models.get_root_collection_id,
+                        default=wagtail.models.get_root_collection_id,
                         on_delete=django.db.models.deletion.CASCADE,
                         related_name="+",
                         to="wagtailcore.Collection",
@@ -266,7 +266,7 @@ class Migration(migrations.Migration):
                 ),
                 ("first_name", models.CharField(max_length=100)),
                 ("last_name", models.CharField(max_length=100)),
-                ("biography", wagtail.core.fields.RichTextField(blank=True, null=True)),
+                ("biography", wagtail.fields.RichTextField(blank=True, null=True)),
                 (
                     "email_address",
                     models.EmailField(blank=True, max_length=254, null=True),
@@ -298,7 +298,7 @@ class Migration(migrations.Migration):
                         to="wagtailcore.Page",
                     ),
                 ),
-                ("body", wagtail.core.fields.RichTextField(blank=True, null=True)),
+                ("body", wagtail.fields.RichTextField(blank=True, null=True)),
             ],
             options={"abstract": False},
             bases=("wagtailcore.page",),
@@ -481,20 +481,20 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name="articlepage",
             name="body",
-            field=wagtail.core.fields.StreamField(
+            field=wagtail.fields.StreamField(
                 [
-                    ("paragraph", wagtail.core.blocks.RichTextBlock()),
+                    ("paragraph", wagtail.blocks.RichTextBlock()),
                     ("image", wagtail.images.blocks.ImageChooserBlock()),
                     (
                         "photo_gallery",
-                        wagtail.core.blocks.ListBlock(
+                        wagtail.blocks.ListBlock(
                             wagtail.snippets.blocks.SnippetChooserBlock("core.Photo"),
                             icon="image",
                         ),
                     ),
                     (
                         "embed",
-                        wagtail.core.blocks.StructBlock(
+                        wagtail.blocks.StructBlock(
                             [
                                 (
                                     "embed",
@@ -511,29 +511,29 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name="articlepage",
             name="body",
-            field=wagtail.core.fields.StreamField(
+            field=wagtail.fields.StreamField(
                 [
-                    ("paragraph", wagtail.core.blocks.RichTextBlock()),
+                    ("paragraph", wagtail.blocks.RichTextBlock()),
                     (
                         "photo",
-                        wagtail.core.blocks.StructBlock(
+                        wagtail.blocks.StructBlock(
                             [
                                 ("image", wagtail.images.blocks.ImageChooserBlock()),
-                                ("caption", wagtail.core.blocks.RichTextBlock()),
+                                ("caption", wagtail.blocks.RichTextBlock()),
                             ],
                             icon="image",
                         ),
                     ),
                     (
                         "photo_gallery",
-                        wagtail.core.blocks.ListBlock(
+                        wagtail.blocks.ListBlock(
                             wagtail.snippets.blocks.SnippetChooserBlock("core.Photo"),
                             icon="image",
                         ),
                     ),
                     (
                         "embed",
-                        wagtail.core.blocks.StructBlock(
+                        wagtail.blocks.StructBlock(
                             [
                                 (
                                     "embed",
@@ -550,28 +550,28 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name="articlepage",
             name="body",
-            field=wagtail.core.fields.StreamField(
+            field=wagtail.fields.StreamField(
                 [
-                    ("paragraph", wagtail.core.blocks.RichTextBlock()),
+                    ("paragraph", wagtail.blocks.RichTextBlock()),
                     (
                         "photo",
-                        wagtail.core.blocks.StructBlock(
+                        wagtail.blocks.StructBlock(
                             [
                                 ("image", wagtail.images.blocks.ImageChooserBlock()),
-                                ("caption", wagtail.core.blocks.RichTextBlock()),
+                                ("caption", wagtail.blocks.RichTextBlock()),
                             ]
                         ),
                     ),
                     (
                         "photo_gallery",
-                        wagtail.core.blocks.ListBlock(
+                        wagtail.blocks.ListBlock(
                             wagtail.snippets.blocks.SnippetChooserBlock("core.Photo"),
                             icon="image",
                         ),
                     ),
                     (
                         "embed",
-                        wagtail.core.blocks.StructBlock(
+                        wagtail.blocks.StructBlock(
                             [
                                 (
                                     "embed",
@@ -588,28 +588,28 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name="articlepage",
             name="featured_caption",
-            field=wagtail.core.fields.RichTextField(blank=True, null=True),
+            field=wagtail.fields.RichTextField(blank=True, null=True),
         ),
         migrations.AlterField(
             model_name="articlepage",
             name="body",
-            field=wagtail.core.fields.StreamField(
+            field=wagtail.fields.StreamField(
                 [
-                    ("paragraph", wagtail.core.blocks.RichTextBlock()),
+                    ("paragraph", wagtail.blocks.RichTextBlock()),
                     (
                         "photo",
-                        wagtail.core.blocks.StructBlock(
+                        wagtail.blocks.StructBlock(
                             [
                                 ("image", wagtail.images.blocks.ImageChooserBlock()),
                                 (
                                     "caption",
-                                    wagtail.core.blocks.RichTextBlock(
+                                    wagtail.blocks.RichTextBlock(
                                         features=["bold", "italic"], required=False
                                     ),
                                 ),
                                 (
                                     "size",
-                                    wagtail.core.blocks.ChoiceBlock(
+                                    wagtail.blocks.ChoiceBlock(
                                         choices=[
                                             ("small", "Small"),
                                             ("medium", "Medium"),
@@ -623,14 +623,14 @@ class Migration(migrations.Migration):
                     ),
                     (
                         "photo_gallery",
-                        wagtail.core.blocks.ListBlock(
+                        wagtail.blocks.ListBlock(
                             wagtail.snippets.blocks.SnippetChooserBlock("core.Photo"),
                             icon="image",
                         ),
                     ),
                     (
                         "embed",
-                        wagtail.core.blocks.StructBlock(
+                        wagtail.blocks.StructBlock(
                             [
                                 (
                                     "embed",
@@ -658,23 +658,23 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name="articlepage",
             name="body",
-            field=wagtail.core.fields.StreamField(
+            field=wagtail.fields.StreamField(
                 [
-                    ("paragraph", wagtail.core.blocks.RichTextBlock()),
+                    ("paragraph", wagtail.blocks.RichTextBlock()),
                     (
                         "photo",
-                        wagtail.core.blocks.StructBlock(
+                        wagtail.blocks.StructBlock(
                             [
                                 ("image", wagtail.images.blocks.ImageChooserBlock()),
                                 (
                                     "caption",
-                                    wagtail.core.blocks.RichTextBlock(
+                                    wagtail.blocks.RichTextBlock(
                                         features=["bold", "italic"], required=False
                                     ),
                                 ),
                                 (
                                     "size",
-                                    wagtail.core.blocks.ChoiceBlock(
+                                    wagtail.blocks.ChoiceBlock(
                                         choices=[
                                             ("small", "Small"),
                                             ("medium", "Medium"),
@@ -688,8 +688,8 @@ class Migration(migrations.Migration):
                     ),
                     (
                         "photo_gallery",
-                        wagtail.core.blocks.ListBlock(
-                            wagtail.core.blocks.StructBlock(
+                        wagtail.blocks.ListBlock(
+                            wagtail.blocks.StructBlock(
                                 [
                                     (
                                         "image",
@@ -697,7 +697,7 @@ class Migration(migrations.Migration):
                                     ),
                                     (
                                         "caption",
-                                        wagtail.core.blocks.RichTextBlock(
+                                        wagtail.blocks.RichTextBlock(
                                             features=["bold", "italic"], required=False
                                         ),
                                     ),
@@ -708,7 +708,7 @@ class Migration(migrations.Migration):
                     ),
                     (
                         "embed",
-                        wagtail.core.blocks.StructBlock(
+                        wagtail.blocks.StructBlock(
                             [
                                 (
                                     "embed",
@@ -725,23 +725,23 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name="articlepage",
             name="body",
-            field=wagtail.core.fields.StreamField(
+            field=wagtail.fields.StreamField(
                 [
-                    ("paragraph", wagtail.core.blocks.RichTextBlock()),
+                    ("paragraph", wagtail.blocks.RichTextBlock()),
                     (
                         "photo",
-                        wagtail.core.blocks.StructBlock(
+                        wagtail.blocks.StructBlock(
                             [
                                 ("image", wagtail.images.blocks.ImageChooserBlock()),
                                 (
                                     "caption",
-                                    wagtail.core.blocks.RichTextBlock(
+                                    wagtail.blocks.RichTextBlock(
                                         features=["italic"], required=False
                                     ),
                                 ),
                                 (
                                     "size",
-                                    wagtail.core.blocks.ChoiceBlock(
+                                    wagtail.blocks.ChoiceBlock(
                                         choices=[
                                             ("small", "Small"),
                                             ("medium", "Medium"),
@@ -755,8 +755,8 @@ class Migration(migrations.Migration):
                     ),
                     (
                         "photo_gallery",
-                        wagtail.core.blocks.ListBlock(
-                            wagtail.core.blocks.StructBlock(
+                        wagtail.blocks.ListBlock(
+                            wagtail.blocks.StructBlock(
                                 [
                                     (
                                         "image",
@@ -764,7 +764,7 @@ class Migration(migrations.Migration):
                                     ),
                                     (
                                         "caption",
-                                        wagtail.core.blocks.RichTextBlock(
+                                        wagtail.blocks.RichTextBlock(
                                             features=["italic"], required=False
                                         ),
                                     ),
@@ -775,7 +775,7 @@ class Migration(migrations.Migration):
                     ),
                     (
                         "embed",
-                        wagtail.core.blocks.StructBlock(
+                        wagtail.blocks.StructBlock(
                             [
                                 (
                                     "embed",
@@ -792,23 +792,23 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name="articlepage",
             name="body",
-            field=wagtail.core.fields.StreamField(
+            field=wagtail.fields.StreamField(
                 [
-                    ("paragraph", wagtail.core.blocks.RichTextBlock()),
+                    ("paragraph", wagtail.blocks.RichTextBlock()),
                     (
                         "photo",
-                        wagtail.core.blocks.StructBlock(
+                        wagtail.blocks.StructBlock(
                             [
                                 ("image", wagtail.images.blocks.ImageChooserBlock()),
                                 (
                                     "caption",
-                                    wagtail.core.blocks.RichTextBlock(
+                                    wagtail.blocks.RichTextBlock(
                                         features=["italic"], required=False
                                     ),
                                 ),
                                 (
                                     "size",
-                                    wagtail.core.blocks.ChoiceBlock(
+                                    wagtail.blocks.ChoiceBlock(
                                         choices=[
                                             ("small", "Small"),
                                             ("medium", "Medium"),
@@ -822,8 +822,8 @@ class Migration(migrations.Migration):
                     ),
                     (
                         "photo_gallery",
-                        wagtail.core.blocks.ListBlock(
-                            wagtail.core.blocks.StructBlock(
+                        wagtail.blocks.ListBlock(
+                            wagtail.blocks.StructBlock(
                                 [
                                     (
                                         "image",
@@ -831,7 +831,7 @@ class Migration(migrations.Migration):
                                     ),
                                     (
                                         "caption",
-                                        wagtail.core.blocks.RichTextBlock(
+                                        wagtail.blocks.RichTextBlock(
                                             features=["italic"], required=False
                                         ),
                                     ),
@@ -842,7 +842,7 @@ class Migration(migrations.Migration):
                     ),
                     (
                         "embed",
-                        wagtail.core.blocks.StructBlock(
+                        wagtail.blocks.StructBlock(
                             [
                                 (
                                     "embed",
@@ -866,7 +866,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name="contributor",
             name="rich_name",
-            field=wagtail.core.fields.RichTextField(
+            field=wagtail.fields.RichTextField(
                 blank=True, max_length=255, null=True
             ),
         ),

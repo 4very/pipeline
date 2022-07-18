@@ -2,8 +2,8 @@
 
 import core.models
 from django.db import migrations
-import wagtail.core.blocks
-import wagtail.core.fields
+import wagtail.blocks
+import wagtail.fields
 import wagtail.embeds.blocks
 import wagtail.images.blocks
 
@@ -18,6 +18,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='articlepage',
             name='body',
-            field=wagtail.core.fields.StreamField([('paragraph', wagtail.core.blocks.RichTextBlock()), ('photo', wagtail.core.blocks.StructBlock([('image', wagtail.images.blocks.ImageChooserBlock()), ('caption', wagtail.core.blocks.RichTextBlock(features=['italic'], required=False)), ('size', wagtail.core.blocks.ChoiceBlock(choices=[('small', 'Small'), ('medium', 'Medium'), ('large', 'Large')], help_text='Width of image in article.'))])), ('photo_gallery', wagtail.core.blocks.ListBlock(wagtail.core.blocks.StructBlock([('image', wagtail.images.blocks.ImageChooserBlock()), ('caption', wagtail.core.blocks.RichTextBlock(features=['italic'], required=False))]), icon='image')), ('embed', wagtail.core.blocks.StructBlock([('embed', wagtail.embeds.blocks.EmbedBlock(help_text='URL to the content to embed.')), ('size', wagtail.core.blocks.ChoiceBlock(choices=[('small', 'Small'), ('medium', 'Medium'), ('large', 'Large')], help_text='Width of video in article.'))])), ('carousel', wagtail.core.blocks.StreamBlock([('image', wagtail.images.blocks.ImageChooserBlock())])), ('blockquote', core.models.BlockQuoteBlock())], blank=True),
+            field=wagtail.fields.StreamField([('paragraph', wagtail.blocks.RichTextBlock()), ('photo', wagtail.blocks.StructBlock([('image', wagtail.images.blocks.ImageChooserBlock()), ('caption', wagtail.blocks.RichTextBlock(features=['italic'], required=False)), ('size', wagtail.blocks.ChoiceBlock(choices=[('small', 'Small'), ('medium', 'Medium'), ('large', 'Large')], help_text='Width of image in article.'))])), ('photo_gallery', wagtail.blocks.ListBlock(wagtail.blocks.StructBlock([('image', wagtail.images.blocks.ImageChooserBlock()), ('caption', wagtail.blocks.RichTextBlock(features=['italic'], required=False))]), icon='image')), ('embed', wagtail.blocks.StructBlock([('embed', wagtail.embeds.blocks.EmbedBlock(help_text='URL to the content to embed.')), ('size', wagtail.blocks.ChoiceBlock(choices=[('small', 'Small'), ('medium', 'Medium'), ('large', 'Large')], help_text='Width of video in article.'))])), ('carousel', wagtail.blocks.StreamBlock([('image', wagtail.images.blocks.ImageChooserBlock())])), ('blockquote', core.models.BlockQuoteBlock())], blank=True),
         ),
     ]

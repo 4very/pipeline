@@ -2,8 +2,8 @@
 
 from django.db import migrations, models
 import django.db.models.deletion
-import wagtail.core.blocks
-import wagtail.core.fields
+import wagtail.blocks
+import wagtail.fields
 import wagtail.embeds.blocks
 import wagtail.images.blocks
 import wagtail.snippets.blocks
@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name="articlepage",
             name="featured_caption",
-            field=wagtail.core.fields.RichTextField(blank=True, null=True),
+            field=wagtail.fields.RichTextField(blank=True, null=True),
         ),
         migrations.AddField(
             model_name="articlepage",
@@ -32,23 +32,23 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name="articlepage",
             name="body",
-            field=wagtail.core.fields.StreamField(
+            field=wagtail.fields.StreamField(
                 [
-                    ("paragraph", wagtail.core.blocks.RichTextBlock()),
+                    ("paragraph", wagtail.blocks.RichTextBlock()),
                     (
                         "photo",
-                        wagtail.core.blocks.StructBlock(
+                        wagtail.blocks.StructBlock(
                             [
                                 ("image", wagtail.images.blocks.ImageChooserBlock()),
                                 (
                                     "caption",
-                                    wagtail.core.blocks.RichTextBlock(
+                                    wagtail.blocks.RichTextBlock(
                                         features=["bold", "italic"], required=False
                                     ),
                                 ),
                                 (
                                     "size",
-                                    wagtail.core.blocks.ChoiceBlock(
+                                    wagtail.blocks.ChoiceBlock(
                                         choices=[
                                             ("small", "Small"),
                                             ("medium", "Medium"),
@@ -62,14 +62,14 @@ class Migration(migrations.Migration):
                     ),
                     (
                         "photo_gallery",
-                        wagtail.core.blocks.ListBlock(
+                        wagtail.blocks.ListBlock(
                             wagtail.snippets.blocks.SnippetChooserBlock("core.Photo"),
                             icon="image",
                         ),
                     ),
                     (
                         "embed",
-                        wagtail.core.blocks.StructBlock(
+                        wagtail.blocks.StructBlock(
                             [
                                 (
                                     "embed",

@@ -1,5 +1,5 @@
 from django.test import TestCase
-from wagtail.core.models import Page, Site
+from wagtail.models import Page, Site
 from bs4 import BeautifulSoup
 
 from core.models import ArticlePage

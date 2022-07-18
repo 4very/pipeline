@@ -15,15 +15,15 @@ from django.utils import timezone
 from django.utils.functional import cached_property
 from django.utils.html import format_html, mark_safe
 from django.utils.text import slugify
-from wagtail.core import blocks
+from wagtail import blocks
 from django.templatetags.static import static
 from django.utils.html import format_html
 from wagtail.admin import widgets as wagtailadmin_widgets
-from wagtail.core import hooks
-from wagtail.admin.edit_handlers import TabbedInterface, ObjectList
+from wagtail import hooks
+from wagtail.admin.panels import TabbedInterface, ObjectList
 
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
-from wagtail.core.blocks import (
+from wagtail.blocks import (
     RichTextBlock,
     ListBlock,
     StructBlock,
@@ -36,21 +36,21 @@ from django.db import models
 
 from modelcluster.fields import ParentalKey
 
-from wagtail.admin.edit_handlers import (
+from wagtail.admin.panels import (
     FieldPanel,
     MultiFieldPanel,
     InlinePanel,
     StreamFieldPanel,
     PageChooserPanel,
 )
-from wagtail.core.models import Page, Orderable
-from wagtail.core.fields import RichTextField, StreamField
+from wagtail.models import Page, Orderable
+from wagtail.fields import RichTextField, StreamField
 from wagtail.images.edit_handlers import ImageChooserPanel
 
 
-from wagtail.core.fields import RichTextField, StreamField
-from wagtail.core.models import Page, Orderable
-from wagtail.admin.edit_handlers import (
+from wagtail.fields import RichTextField, StreamField
+from wagtail.models import Page, Orderable
+from wagtail.admin.panels import (
     FieldPanel,
     StreamFieldPanel,
     MultiFieldPanel,
@@ -71,9 +71,9 @@ from modelcluster.fields import ParentalKey, ParentalManyToManyField
 
 
 from django import forms
-from django.utils.encoding import force_text
 from django.utils.html import format_html
-from wagtail.core.blocks import FieldBlock
+from django.utils.encoding import force_str
+from wagtail.blocks import FieldBlock
 
 
 logger = logging.getLogger("pipeline")
@@ -402,7 +402,7 @@ class BlockQuoteBlock(FieldBlock):
         super(BlockQuoteBlock, self).__init__(**kwargs)
 
     def get_searchable_content(self, value):
-        return [force_text(value)]
+        return [force_str(value)]
 
     def render_basic(self, value, context=None):
         if value:

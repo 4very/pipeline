@@ -2,7 +2,7 @@
 
 from django.db import migrations, models
 import django.db.models.deletion
-import wagtail.core.fields
+import wagtail.fields
 
 
 class Migration(migrations.Migration):
@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name="candidatepage",
             name="bio",
-            field=wagtail.core.fields.RichTextField(
+            field=wagtail.fields.RichTextField(
                 blank=True, max_length=3000, null=True
             ),
         ),

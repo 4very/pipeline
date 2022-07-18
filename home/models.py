@@ -1,7 +1,7 @@
-from wagtail.core.models import Page
-from wagtail.core.fields import StreamField
-from wagtail.admin.edit_handlers import StreamFieldPanel
-from wagtail.core import blocks
+from wagtail.models import Page
+from wagtail.fields import StreamField
+from wagtail.admin.panels import StreamFieldPanel
+from wagtail import blocks
 from wagtail.images.blocks import ImageChooserBlock
 
 from core.models import ArticlePage, ArticlesIndexPage, AdBlock, MarqueeBlock

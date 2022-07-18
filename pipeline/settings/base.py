@@ -32,7 +32,7 @@ INSTALLED_APPS = [
     "wagtailautocomplete",
     "wagtail.contrib.forms",
     "wagtail.contrib.modeladmin",
-    "wagtail.contrib.postgres_search",
+    "wagtail.search.backends.database",
     "wagtail.contrib.redirects",
     "wagtail.contrib.routable_page",
     "wagtail.contrib.settings",
@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     "wagtail.images",
     "wagtail.search",
     "wagtail.admin",
-    "wagtail.core",
+    "wagtail",
     "modelcluster",
     "taggit",
     "whitenoise.runserver_nostatic",
@@ -70,7 +70,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "wagtail.core.middleware.SiteMiddleware",
+    "wagtail.middleware.SiteMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
     "core.middleware.MigrationRedirectMiddleware",
     "django_prometheus.middleware.PrometheusAfterMiddleware",
@@ -157,11 +157,11 @@ WAGTAIL_SITE_NAME = "Pipeline"
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
-BASE_URL = "https://poly.rpi.edu"
+WAGTAILADMIN_BASE_URL = "https://poly.rpi.edu"
 
 # Search
 WAGTAILSEARCH_BACKENDS = {
-    "default": {"BACKEND": "wagtail.contrib.postgres_search.backend"}
+    "default": {"BACKEND": "wagtail.search.backends.database"}
 }
 
 WAGTAILIMAGES_FEATURE_DETECTION_ENABLED = True

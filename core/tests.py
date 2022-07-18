@@ -1,9 +1,9 @@
 from datetime import datetime, timedelta, timezone
 from django.test import TestCase
 from django.utils import timezone
-from wagtail.core.models import Page, Site
+from wagtail.models import Page, Site
 from bs4 import BeautifulSoup
-from wagtail.core.rich_text import RichText
+from wagtail.rich_text import RichText
 import xml.etree.ElementTree as ET
 
 from .models import ArticlePage, ArticlesIndexPage
