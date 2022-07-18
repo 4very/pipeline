@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i|Playfair+Display:400,400i,700,700i,900,900i|Raleway:500,500i,600,600i,700,700i');
 
+
+$primary: #DA1E05;
 $theme-colors: (
-  "primary": #DA1E05,
+  primary: $primary
 );
 
 $off-white: #fefefe;
@@ -10,45 +12,49 @@ $enable-gradients: true;
 
 $font-family-base: 'Lora', serif;
 
-@import "~bootstrap/scss/functions";
-@import "~bootstrap/scss/variables";
-@import "~bootstrap/scss/mixins";
+@import "bootstrap/scss/bootstrap";
+
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins";
 
 // Optional
-@import "~bootstrap/scss/root";
-@import "~bootstrap/scss/reboot";
-@import "~bootstrap/scss/type";
-@import "~bootstrap/scss/images";
-// @import "~bootstrap/scss/code";
-@import "~bootstrap/scss/grid";
-// @import "~bootstrap/scss/tables";
-@import "~bootstrap/scss/forms";
-@import "~bootstrap/scss/buttons";
-// @import "~bootstrap/scss/transitions";
-// @import "~bootstrap/scss/dropdown";
-// @import "~bootstrap/scss/button-group";
-@import "~bootstrap/scss/input-group";
-// @import "~bootstrap/scss/custom-forms";
-@import "~bootstrap/scss/nav";
-@import "~bootstrap/scss/navbar";
-// @import "~bootstrap/scss/card";
-// @import "~bootstrap/scss/breadcrumb";
-@import "~bootstrap/scss/pagination";
-// @import "~bootstrap/scss/badge";
-// @import "~bootstrap/scss/jumbotron";
-// @import "~bootstrap/scss/alert";
-// @import "~bootstrap/scss/progress";
-// @import "~bootstrap/scss/media";
-// @import "~bootstrap/scss/list-group";
-// @import "~bootstrap/scss/close";
-@import "~bootstrap/scss/modal";
-// @import "~bootstrap/scss/tooltip";
-// @import "~bootstrap/scss/popover";
-// @import "~bootstrap/scss/carousel";
-@import "~bootstrap/scss/utilities";
-// @import "~bootstrap/scss/print";
+@import "bootstrap/scss/root";
+@import "bootstrap/scss/reboot";
+@import "bootstrap/scss/type";
+@import "bootstrap/scss/images";
+// @import "bootstrap/scss/code";
+@import "bootstrap/scss/grid";
+// @import "bootstrap/scss/tables";
+// @import "bootstrap/scss/forms";
+@import "bootstrap/scss/buttons";
+// @import "bootstrap/scss/transitions";
+// @import "bootstrap/scss/dropdown";
+// @import "bootstrap/scss/button-group";
+@import "bootstrap/scss/forms/input-group";
+// @import "bootstrap/scss/custom-forms";
+@import "bootstrap/scss/nav";
+@import "bootstrap/scss/navbar";
+// @import "bootstrap/scss/card";
+// @import "bootstrap/scss/breadcrumb";
+@import "bootstrap/scss/pagination";
+// @import "bootstrap/scss/badge";
+// @import "bootstrap/scss/jumbotron";
+// @import "bootstrap/scss/alert";
+// @import "bootstrap/scss/progress";
+// @import "bootstrap/scss/media";
+// @import "bootstrap/scss/list-group";
+// @import "bootstrap/scss/close";
+@import "bootstrap/scss/modal";
+// @import "bootstrap/scss/tooltip";
+// @import "bootstrap/scss/popover";
+// @import "bootstrap/scss/carousel";
+@import "bootstrap/scss/utilities";
+@import "bootstrap/scss/helpers/colored-links";
+// @import "bootstrap/scss/print";
 
 @import "./elections.scss";
+
 
 @each $breakpoint in map-keys($grid-breakpoints) {
   @include media-breakpoint-up($breakpoint) {
@@ -88,6 +94,15 @@ header a.search {
   text-decoration: none;
 }
 
+hr {
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	border: 0;
+	border-top: 1px solid rgba(0,0,0,.1);
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0) !important;
+}
+
 .header-logo img {
   height: 35px;
 }
@@ -98,6 +113,17 @@ header a.search {
 @media (min-width: 768px) {
   .display-4 {
     font-size: 3rem;
+  }
+}
+
+.text-dark {
+  color: $gray-900;
+}
+
+a {
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
   }
 }
 
@@ -373,7 +399,7 @@ ul.pagination {
 
 .template-articlepage .embed {
   iframe, object, embed {
-    @extend .embed-responsive-item;
+    @extend .ratio;
   }
 }
 
@@ -429,4 +455,9 @@ ul.pagination {
 
 .template-staffpage .photo img {
   width: 100px;
+}
+
+.btn-outline-light {
+  color: $light;
+  border-color: $light;
 }

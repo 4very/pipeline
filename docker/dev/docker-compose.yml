@@ -1,0 +1,58 @@
+version: '3'
+
+services:
+  postgres:
+    container_name: pipeline-dev-postgres
+    image: postgres
+    volumes:
+      - "${HOST_PROJECT_PATH:-../..}/docker/dev/db/data:/var/lib/postgresql/data"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: pipeline
+    networks:
+      - pipeline-network
+
+
+
+  django:
+    container_name: pipeline-dev-django
+    build:
+      dockerfile: ./docker/dev/Dockerfile.django
+      context: ../..
+    #command: python manage.py migrate && python manage.py createsuperuser && python manage.py runserver 0.0.0.0:8000
+    environment:
+      SECRET_KEY:
+    ports:
+      - 8000:8000
+    depends_on:
+      - postgres
+    networks:
+      - pipeline-network
+    volumes:
+      - "${HOST_PROJECT_PATH:-../..}:/app"
+
+
+  node:
+    container_name: pipeline-dev-node
+    build:
+      dockerfile: ./docker/dev/Dockerfile.node
+      context: ../..
+    networks:
+      - pipeline-network
+    volumes:
+      - "${HOST_PROJECT_PATH:-../..}:/app"
+
+
+  adminer:
+    image: adminer
+    container_name: pipeline-dev-adminer
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - pipeline-network
+
+networks:
+  pipeline-network:
+    external: true

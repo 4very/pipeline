@@ -105,7 +105,7 @@
   </script>
 
 {% block header_block %}
-    <header class="pb-4 pb-md-5 pt-2 pt-md-3 bg-gradient-primary">
+    <header class="pb-4 pb-md-5 pt-2 pt-md-3 bg-primary bg-gradient">
         <div class="container">
             <div class="flex-row no-gutters align-items-center">
                 <div class="col text-right mb-3 mb-md-0">
@@ -262,7 +262,7 @@
             <hr>
             <div class="d-flex flex-row justify-content-between">
             {% for section in page.get_sections %}
-                <a href="{% pageurl section %}" class="h5 text-primary">{{ section.title }}</a>
+                <a href="{% pageurl section %}" class="h5 link-primary">{{ section.title }}</a>
             {% endfor %}
             </div>
         </div>
