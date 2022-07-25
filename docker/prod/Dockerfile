@@ -2,7 +2,7 @@ FROM node:10 as node
 
 WORKDIR /app
 COPY package.json package-lock.json ./
-RUN npm ci
+RUN yarn install
 
 COPY . .
 RUN npx webpack --config webpack.production.config.js --display errors-only
