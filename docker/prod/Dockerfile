@@ -28,4 +28,4 @@ COPY --from=node /app/webpack-stats.json /app/
 #RUN ls
 
 EXPOSE 8000
-CMD start.sh
+CMD /app/start.sh
