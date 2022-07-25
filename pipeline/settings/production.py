@@ -9,7 +9,7 @@ WAGTAIL_ENABLE_UPDATE_CHECK = False
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ["SECRET_KEY"]
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", "[::1]", "poly.rpi.edu"] + (os.getenv("DJANGO_ALLOWED_HOST", []))
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "[::1]", "poly.rpi.edu"] + ([os.getenv("DJANGO_ALLOWED_HOST")])
 
 DATABASES["default"]["CONN_MAX_AGE"] = 600
 
