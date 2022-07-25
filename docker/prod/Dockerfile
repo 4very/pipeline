@@ -16,7 +16,9 @@ ENV DJANGO_SETTINGS_MODULE pipeline.settings.production
 RUN groupadd -r pipeline && useradd --no-log-init -r -g pipeline pipeline
 
 RUN pip install pipenv
-COPY ./Pipfile ./Pipfile.lock /app/
+COPY ./Pipfile ./Pipfile.lock ./docker/prod/start.sh /app/
+
+
 WORKDIR /app
 RUN pipenv install --system --deploy
 
@@ -24,7 +26,6 @@ COPY . /app/
 COPY --from=node /app/pipeline/static/webpack_bundles/ /app/pipeline/static/webpack_bundles/
 COPY --from=node /app/webpack-stats.json /app/
 #RUN ls
-#COPY ./docker/prod/start.sh ./
 
 EXPOSE 8000
-CMD /app/docker/prod/start.sh
+CMD start.sh
