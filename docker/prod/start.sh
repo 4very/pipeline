@@ -11,4 +11,4 @@ if [ ! -f ./.build ]; then
 fi
 
 # cd  // Change to our Django project
-exec gunicorn pipeline.wsgi:application --bind 0.0.0.0:8000 --workers 3 --user ${USER:-pipeline} --group ${GROUP:-pipeline} 
+exec gunicorn pipeline.wsgi:application --bind 0.0.0.0:${PORT:-8000} --workers 3 --user ${USER:-pipeline} --group ${GROUP:-pipeline} 
