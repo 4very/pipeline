@@ -1,11 +1,11 @@
-FROM node:10 as node
+FROM node:16 as node
 
 WORKDIR /app
-COPY package.json package-lock.json ./
+COPY package.json yarn.lock ./
 RUN yarn install
 
 COPY . .
-RUN npx webpack --config webpack.production.config.js --display errors-only
+RUN npx webpack --config webpack.production.config.js
 
 FROM python:3.7 as python
 LABEL maintainer="tech@poly.rpi.edu"
@@ -16,14 +16,16 @@ ENV DJANGO_SETTINGS_MODULE pipeline.settings.production
 RUN groupadd -r pipeline && useradd --no-log-init -r -g pipeline pipeline
 
 RUN pip install pipenv
-COPY ./Pipfile ./Pipfile.lock /app/
+COPY ./Pipfile ./Pipfile.lock ./docker/prod/start.sh /app/
+
+
 WORKDIR /app
 RUN pipenv install --system --deploy
 
 COPY . /app/
 COPY --from=node /app/pipeline/static/webpack_bundles/ /app/pipeline/static/webpack_bundles/
 COPY --from=node /app/webpack-stats.json /app/
-COPY ./docker/prod/start.sh start.sh
+#RUN ls
 
 EXPOSE 8000
-CMD ["./start.sh"]
+CMD /app/start.sh

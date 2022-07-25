@@ -3,11 +3,11 @@
 !articles
 !core
 !home
+!docker
 !search
 !manage.py
 !newsletter
 !package.json
-!package-lock.json
 !Pipfile
 !Pipfile.lock
 !postcss.config.js
