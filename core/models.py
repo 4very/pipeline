@@ -167,6 +167,7 @@ class StaffPage(Page):
         return (
             ArticlePage.objects.live()
             .filter(authors__author=self.contributor)
+            # .union(ArticlePage.objects.live())
             .order_by("-first_published_at")
             .all()
         )
@@ -309,12 +310,12 @@ def image_delete(sender, instance, **kwargs):
 
 
 # Do feature detection when a user saves an image without a focal point
-@receiver(pre_save, sender=CustomImage)
-def image_feature_detection(sender, instance, **kwargs):
-    # Make sure the image doesn't already have a focal point
-    if not instance.has_focal_point():
-        # Set the focal point
-        instance.set_focal_point(instance.get_suggested_focal_point())
+# @receiver(pre_save, sender=CustomImage)
+# def image_feature_detection(sender, instance, **kwargs):
+#     # Make sure the image doesn't already have a focal point
+#     if not instance.has_focal_point():
+#         # Set the focal point
+#         instance.set_focal_point(instance.get_suggested_focal_point())
 
 
 class CustomRendition(AbstractRendition):
