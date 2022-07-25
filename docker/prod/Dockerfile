@@ -26,4 +26,4 @@ COPY --from=node /app/webpack-stats.json /app/
 COPY ./docker/prod/start.sh start.sh
 
 EXPOSE 8000
-CMD ["./start.sh"]
+CMD /app/docker/prod/start.sh
