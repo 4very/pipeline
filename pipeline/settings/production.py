@@ -9,7 +9,7 @@ WAGTAIL_ENABLE_UPDATE_CHECK = False
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ["SECRET_KEY"]
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", "[::1]", "poly.rpi.edu"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "[::1]", "poly.rpi.edu"].append(os.getenv("DJANGO_ALLOWED_HOST", []))
 
 DATABASES["default"]["CONN_MAX_AGE"] = 600
 
@@ -39,7 +39,7 @@ LOGGING = {
 EMAIL_USE_TLS = True
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
-EMAIL_HOST_USER = "pipeline-prod@poly.rpi.edu"
+EMAIL_HOST_USER = os.environ["EMAIL_HOST_ADDRESS"]
 EMAIL_HOST_PASSWORD = os.environ["EMAIL_HOST_PASSWORD"]
 
 # Caching
