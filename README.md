@@ -1,11 +1,109 @@
 # Pipeline
 
+Pipeline was originally created for use for by [_The Rensselaer Polytechnic_](https://poly.rpi.edu), 
+the school newspaper for [Rensselaer Polytechnic Institute](https://www.rpi.edu/) by [Sidney Kochman](https://github.com/kochman) and _The Polytechnic_ team. This repository generalizes and documents a way for other News Organizations to repurpose the site with their own branding. 
+
+
 Pipeline is [_The Rensselaer Polytechnic_](https://poly.rpi.edu)'s next
 website. It will enable rapid development of new article layouts and
 interactive features. In the long term, it will provide a solid platform for
 our content over the coming decade and support _The Poly_'s focus on
 online-first journalism.
 
+# System Requirements
+**OS**: Preferred unix-based operating system (Ubuntu, Debian, MacOS...etc).
+
+**RAM**: At least 2GB, preferred 4GB.
+
+**Core**: At least 2 cores, preffered 4 cores.
+
+# Getting Started
+The easiest and most straightforward way to host Pipeline is to use docker. The first half of this guide will assume that you have already docker installed, you can find instructions for your operating system [here](https://docs.docker.com/engine/install/).
+
+## Step 0: Installing nessicary programs
+This guide isn't going to cover the specifics for each operating system but it will include links where you can learn how to install it on your system. The following programs are assumed to be installed on your device:
+
+- Any kind of terminal program
+- [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) - We will use this to get the source code to your system
+- [Docker](https://docs.docker.com/engine/install/) - This is what we are going to use to run the programs
+- Docker Compose
+
+
+## Step 1: Clone the git repository
+---
+Open a terminal window and naviate to the folder in which you want to store the Pipeline source code. Run the following command
+```sh
+git clone https://github.com/4very/pipeline.git
+```
+This command will create a subfolder called `Pipeline` in which all of the source code will be.
+
+## Step 2: Populating the .env files
+---
+The .env file at the root of this folder will hold a majority of your configuration settings for your site. You can view all of the things that you can configure [here](). Keep this file private as it will contain secrets that are meant to protect your site. As a start the following are required for you to run the program:
+```sh
+# The title of your site
+# This will also apear as the header if you do not configure an image url
+SITE_TITLE = 
+
+# Auto generated sections
+SECTION_NEWS = true
+SECTION_FEATURES = true
+SECTION_OPINION = true
+SECTION_SPORTS = true
+
+# Self configured sections
+SECTION_CONTACT = true
+SECTION_ABOUT = true
+SECTION_SUBMIT = true
+
+# This is the color of the header and various other accent's around the site
+COLOR_BRAND = 
+
+COLOR_BACKGROUND = 
+COLOR_TEXT_MAIN = 
+COLOR_TEXT_SUBMAIN = 
+
+# Admin login, used to create other user accounts
+ADMIN_USERNAME = 
+ADMIN_EMAIL =
+ADMIN_PASSWORD =
+
+```
+Note: You can change most of these values later, but you will need to manually add/delete sections if you wish to change them after your first run.
+
+## Step 3: Starting the containers
+---
+In the root of the project folder run the following command:
+```sh
+(cd ./docker/prod/ && docker-compose up -d)
+```
+It is normal for this command to take a while, so go grab yourself some snacks and a drink while it's running. After it's done you should see this inside of the terminal:
+<pre style="color:rgb(99,110,187)">
+[+] Running 6/6
+ ⠿ Network pipeline-prod_django-nginx     Created
+ ⠿ Volume "pipeline-prod_django-static"   Created
+ ⠿ Volume "pipeline-prod_postgres-data"   Created
+ ⠿ Container pipeline-prod-postgres-1     Started
+ ⠿ Container pipeline-prod-django-1       Started
+ ⠿ Container pipeline-prod-nginx-1        Started
+</pre>
+
+You now should be able to connect to your new site with the url [localhost:8000](http://localhost:8000). If that doesn't work you can verify that your containers are up and healthy by running the command:
+
+```sh
+docker container ls --format "table {{.ID}}\t{{.Names}}\t{{.Status}}" --filter name="pipeline-prod*"
+```
+You should see 3 containers that start with `pipeline-prod`. If you see none or less than 3 try running
+```sh
+$ (cd ./docker/prod/ && docker-compose down)
+```
+and then run the command above again.
+
+## Step 4: Logging in and editing your site
+---
+Navigate to [localhost:8000/admin](http://localhost:8000/admin) and log in with the credentials that you put in your `.env` file. Here you can create new articles.
+
+---
 ## Requirements
 
 Ensure these are installed before continuing.
