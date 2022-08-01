@@ -167,7 +167,7 @@ class StaffPage(Page):
         return (
             ArticlePage.objects.live()
             .filter(authors__author=self.contributor)
-            # .union(ArticlePage.objects.live())
+            .union(ArticlePage.objects.live().filter(featured_image__photographer=self.contributor))
             .order_by("-first_published_at")
             .all()
         )
