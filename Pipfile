@@ -23,7 +23,7 @@ nplusone = "*"
 
 [dev-packages]
 "flake8" = "*"
-black = "==22.6.0"
+black = "==22.8.0"
 nplusone = "*"
 pylint = "*"
 pylint-django = "*"
